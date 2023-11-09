@@ -77,6 +77,14 @@ export default function ShopPage({ shop, reviews }) {
   const router = useRouter()
   const { shopId } = router.query
 
+  if (!shop) {
+    return (
+      <div className='flex flex-col sm:w-1/2'>
+        <h2 className='text-4xl'>Loading...</h2>
+      </div>
+    )
+  }
+
   return (
     <div className='flex flex-col sm:w-2/3'>
       <div>
