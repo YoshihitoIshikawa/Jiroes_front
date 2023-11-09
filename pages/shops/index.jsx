@@ -1,9 +1,10 @@
 import { Box } from '@mui/material'
-import axios from 'axios'
 import Link from 'next/link'
 
+import api from '@/components/api'
+
 export async function getStaticProps() {
-  const res = await axios.get('http://localhost:3000/api/v1/shops')
+  const res = await api.get('/shops')
   const shops = res.data
   return {
     props: { shops: shops },
