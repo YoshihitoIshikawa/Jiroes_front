@@ -1,11 +1,5 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "next/core-web-vitals",
-    "prettier",
-    "next",
-    "next/babel"
-  ],
+  "extends": ["eslint:recommended", "next/core-web-vitals", "prettier", "next"],
   "plugins": ["import", "jest"],
   "env": {
     "jest/globals": true
