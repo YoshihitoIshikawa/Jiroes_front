@@ -46,6 +46,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }))
 
+const searchUrl = process.env.API_BASE_URL || 'http://localhost:3000/api/v1'
+
 export default function PrimarySearchAppBar() {
   const { loginWithRedirect, isAuthenticated, logout } = useAuth0()
 
@@ -55,7 +57,7 @@ export default function PrimarySearchAppBar() {
 
   const handleSearch = async () => {
     try {
-      router.push(`/search?keyword=${searchTerm}`)
+      router.push(`${searchUrl}/search?keyword=${searchTerm}`)
     } catch (error) {
       console.error('検索エラー:', error)
     }
