@@ -1,9 +1,10 @@
 import { Box } from '@mui/system'
-import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'
+
+import api from '@/components/api'
 
 export default function SearchResults() {
   const router = useRouter()
@@ -14,9 +15,7 @@ export default function SearchResults() {
   useEffect(() => {
     const getSearchResults = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/shops/search?search=${searchTerm}`,
-        )
+        const response = await api.get(`/shops/search?search=${searchTerm}`)
         setSearchResults(response.data)
       } catch (e) {
         console.log(e.message)

@@ -9,11 +9,12 @@ import {
   InputLabel,
   MenuItem,
 } from '@mui/material'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
+
+import api from '@/components/api'
 
 export default function NewReview() {
   const schema = yup.object({
@@ -88,11 +89,7 @@ export default function NewReview() {
       formData.append('image', fileInput.files[0])
       formData.append('sub', user.sub)
 
-      await axios.post(
-        `http://localhost:3000/api/v1/shops/${shopId}/reviews`,
-        formData,
-        headers,
-      )
+      await api.post(`/shops/${shopId}/reviews`, formData, headers)
       router.push('/')
     } catch (err) {
       alert('登録に失敗しました。')

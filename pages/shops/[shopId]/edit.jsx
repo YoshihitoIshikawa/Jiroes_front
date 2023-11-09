@@ -1,15 +1,16 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, Button, TextField } from '@mui/material'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
+import api from '@/components/api'
+
 export async function getStaticProps({ params }) {
-  const resShop = await axios.get(`http://localhost:3000/api/v1/shops/${params.shopId}`)
+  const resShop = await api.get(`/shops/${params.shopId}`)
   const shop = resShop.data
   return {
     props: { shop: shop },
@@ -17,7 +18,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get('http://localhost:3000/api/v1/shops')
+  const res = await api.get('/shops')
   const shops = await res.data
 
   const paths = shops.map((shop) => ({
@@ -84,7 +85,7 @@ export default function EditShop({ shop }) {
           Authorization: `Bearer ${token}`,
         },
       }
-      await axios.patch(`http://localhost:3000/api/v1/shops/${shopId}`, data, headers)
+      await api.patch(`/shops/${shopId}`, data, headers)
       router.push('/')
     } catch (err) {
       alert('登録に失敗しました。')

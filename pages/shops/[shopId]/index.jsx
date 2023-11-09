@@ -4,13 +4,14 @@ import { Button } from '@mui/material'
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
-import axios from 'axios'
 import moment from 'moment'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import * as React from 'react'
+
+import api from '@/components/api'
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props
@@ -42,11 +43,9 @@ function a11yProps(index) {
 }
 
 export async function getStaticProps({ params }) {
-  const resShop = await axios.get(`http://localhost:3000/api/v1/shops/${params.shopId}`)
+  const resShop = await api.get(`/shops/${params.shopId}`)
   const shop = resShop.data
-  const resReviews = await axios.get(
-    `http://localhost:3000/api/v1/shops/${params.shopId}/reviews`,
-  )
+  const resReviews = await api.get(`/shops/${params.shopId}/reviews`)
   const reviews = resReviews.data
   return {
     props: { shop: shop, reviews: reviews },
@@ -54,7 +53,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get('http://localhost:3000/api/v1/shops')
+  const res = await api.get('/shops')
   const shops = await res.data
 
   const paths = shops.map((shop) => ({
@@ -79,9 +78,9 @@ export default function ShopPage({ shop, reviews }) {
   const { shopId } = router.query
 
   return (
-    <div className='sm:w-2/3 flex flex-col'>
+    <div className='flex flex-col sm:w-2/3'>
       <div>
-        <h1 className='text-xl md:text-3xl flex justify-center mb-10'>{shop.name}</h1>
+        <h1 className='mb-10 flex justify-center text-xl md:text-3xl'>{shop.name}</h1>
       </div>
       <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -118,8 +117,8 @@ export default function ShopPage({ shop, reviews }) {
                     >
                       {review.title}
                     </Link>
-                    <p className='text-lg mt-4'>評価：{review.score} / 5</p>
-                    <p className='text-lg mt-4'>
+                    <p className='mt-4 text-lg'>評価：{review.score} / 5</p>
+                    <p className='mt-4 text-lg'>
                       投稿日：{moment(review.created_at).format('YYYY-MM-DD')}
                     </p>
                   </div>
@@ -128,7 +127,7 @@ export default function ShopPage({ shop, reviews }) {
             </div>
           ) : (
             <div className='flex flex-col'>
-              <p className='text-2xl mb-8'>まだレビューがありません。</p>
+              <p className='mb-8 text-2xl'>まだレビューがありません。</p>
               <Link className='text-xl' href={`/shops/${shopId}/reviews/new`}>
                 ⇨最初のレビューを投稿する。
               </Link>
@@ -138,8 +137,8 @@ export default function ShopPage({ shop, reviews }) {
         <CustomTabPanel value={value} index={1}>
           <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
             <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
-              <div className='overflow-hidden mb-20'>
-                <table className='min-w-full text-left md:text-lg font-light mb-4'>
+              <div className='mb-20 overflow-hidden'>
+                <table className='mb-4 min-w-full text-left font-light md:text-lg'>
                   <tbody>
                     <tr className='border-b dark:border-neutral-500'>
                       <th className='whitespace-nowrap px-6 py-4'>所在地</th>

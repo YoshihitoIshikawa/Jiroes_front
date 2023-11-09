@@ -9,16 +9,15 @@ import {
   InputLabel,
   MenuItem,
 } from '@mui/material'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 
+import api from '@/components/api'
+
 export async function getStaticProps({ params }) {
-  const res = await axios.get(
-    `http://localhost:3000/api/v1/shops/${params.shopId}/reviews/${params.reviewId}`,
-  )
+  const res = await api.get(`/shops/${params.shopId}/reviews/${params.reviewId}`)
   const review = res.data
   return {
     props: { review: review },
@@ -26,7 +25,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const shopRes = await axios.get(`http://localhost:3000/api/v1/shops`)
+  const shopRes = await api.get(`/shops`)
   const shops = await shopRes.data
 
   const shopPaths = shops.map((shop) => ({
@@ -36,9 +35,7 @@ export async function getStaticPaths() {
   const paths = []
 
   for (const shopPath of shopPaths) {
-    const reviewRes = await axios.get(
-      `http://localhost:3000/api/v1/shops/${shopPath.params.shopId}/reviews`,
-    )
+    const reviewRes = await api.get(`/shops/${shopPath.params.shopId}/reviews`)
     const reviews = await reviewRes.data
 
     const reviewPaths = reviews.map((review) => ({
@@ -126,11 +123,7 @@ export default function EditReview({ review }) {
       formData.append('image', fileInput.files[0])
       formData.append('sub', user.sub)
 
-      await axios.patch(
-        `http://localhost:3000/api/v1/shops/${shopId}/reviews/${reviewId}`,
-        formData,
-        headers,
-      )
+      await api.patch(`/shops/${shopId}/reviews/${reviewId}`, formData, headers)
       router.push('/')
     } catch (err) {
       alert('登録に失敗しました。')

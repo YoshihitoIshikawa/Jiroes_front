@@ -1,12 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, Button, TextField } from '@mui/material'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
+
+import api from '@/components/api'
 
 export default function NewShop() {
   const schema = yup.object({
@@ -60,7 +61,7 @@ export default function NewShop() {
           Authorization: `Bearer ${token}`,
         },
       }
-      await axios.post('http://localhost:3000/api/v1/shops', data, headers)
+      await api.post('/shops', data, headers)
       router.push('/')
     } catch (err) {
       alert('登録に失敗しました。')
