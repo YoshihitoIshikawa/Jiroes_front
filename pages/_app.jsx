@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
       clientId={process.env['NEXT_PUBLIC_AUTH0_CLIENT_ID']}
       audience={process.env['NEXT_PUBLIC_AUTH0_AUDIENCE']}
       authorizationParams={{
-        redirect_uri: process.env['NEXT_PUBLIC_BASE_URL'] || 'http://localhost:9000',
+        redirect_uri: process.env['NEXT_PUBLIC_BASE_URL'],
       }}
     >
       <Head>
