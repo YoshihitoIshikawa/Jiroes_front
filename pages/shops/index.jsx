@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import api from '@/components/api'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await api.get('/shops')
   const shops = res.data
   return {
