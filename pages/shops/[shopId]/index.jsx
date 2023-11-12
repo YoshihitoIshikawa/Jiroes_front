@@ -49,6 +49,7 @@ export async function getStaticProps({ params }) {
   const reviews = resReviews.data
   return {
     props: { shop: shop, reviews: reviews },
+    revalidate: 3,
   }
 }
 

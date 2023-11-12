@@ -14,37 +14,11 @@ import { useEffect, useState } from 'react'
 
 import api from '@/components/api'
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const res = await api.get(`/shops/${params.shopId}/reviews/${params.reviewId}`)
   const review = res.data
   return {
     props: { review: review },
-  }
-}
-
-export async function getStaticPaths() {
-  const shopRes = await api.get('/shops')
-  const shops = await shopRes.data
-
-  const shopPaths = shops.map((shop) => ({
-    params: { shopId: shop.id.toString() },
-  }))
-
-  const paths = []
-
-  for (const shopPath of shopPaths) {
-    const reviewRes = await api.get(`/shops/${shopPath.params.shopId}/reviews`)
-    const reviews = await reviewRes.data
-
-    const reviewPaths = reviews.map((review) => ({
-      params: { shopId: shopPath.params.shopId, reviewId: review.id.toString() },
-    }))
-
-    paths.push(...reviewPaths)
-  }
-  return {
-    paths,
-    fallback: true,
   }
 }
 

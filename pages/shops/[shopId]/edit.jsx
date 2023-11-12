@@ -9,24 +9,11 @@ import * as yup from 'yup'
 
 import api from '@/components/api'
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const resShop = await api.get(`/shops/${params.shopId}`)
   const shop = resShop.data
   return {
     props: { shop: shop },
-  }
-}
-
-export async function getStaticPaths() {
-  const res = await api.get('/shops')
-  const shops = await res.data
-
-  const paths = shops.map((shop) => ({
-    params: { shopId: shop.id.toString() },
-  }))
-  return {
-    paths,
-    fallback: true,
   }
 }
 
