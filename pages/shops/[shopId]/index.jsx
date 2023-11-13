@@ -101,7 +101,7 @@ export default function ShopPage({ shop, reviews }) {
                       alt='reviewImage'
                       className='rounded-lg'
                       width={200}
-                      height={200}
+                      height={150}
                       priority
                     />
                   </div>
