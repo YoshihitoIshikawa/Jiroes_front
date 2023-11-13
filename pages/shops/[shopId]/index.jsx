@@ -111,7 +111,7 @@ export default function ShopPage({ shop, reviews }) {
                 <Box className='m-4 flex' key={review.id}>
                   <div className='mr-10'>
                     <Image
-                      src={review.image.thumb.url}
+                      src={review.image.url}
                       alt='reviewImage'
                       className='rounded-lg'
                       width={200}
