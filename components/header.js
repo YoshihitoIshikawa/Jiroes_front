@@ -11,10 +11,19 @@ import MenuItem from '@mui/material/MenuItem'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import { styled, alpha } from '@mui/material/styles'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import * as React from 'react'
 import { useState } from 'react'
+
+const myTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#212121',
+    },
+  },
+})
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -150,69 +159,71 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static' className='bg-zinc-800'>
-        <Toolbar>
-          <RamenDiningIcon className='mr-2' />
-          <Typography
-            variant='h6'
-            className='mr-3 font-black'
-            component='div'
-            sx={{ display: { sm: 'block' } }}
-          >
-            <Link href='/'>JIROES</Link>
-          </Typography>
-          <Search>
-            <StyledInputBase
-              placeholder='店名・エリア検索'
-              inputProps={{ 'aria-label': 'search' }}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </Search>
-          <SearchIcon className='cursor-pointer' onClick={handleSearch} />
-          <Box sx={{ flexGrow: 1 }} />
-          {isAuthenticated ? (
-            <>
-              <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <IconButton
-                  size='large'
-                  edge='end'
-                  aria-label='account of current user'
-                  aria-controls={menuId}
-                  aria-haspopup='true'
-                  onClick={handleProfileMenuOpen}
-                  color='inherit'
-                >
-                  <AccountCircle />
-                </IconButton>
-              </Box>
-              <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                <IconButton
-                  size='large'
-                  aria-label='show more'
-                  aria-controls={mobileMenuId}
-                  aria-haspopup='true'
-                  onClick={handleMobileMenuOpen}
-                  color='inherit'
-                >
-                  <AccountCircle />
-                </IconButton>
-              </Box>
-            </>
-          ) : (
-            <div className='flex items-center'>
-              <div>
-                <p
-                  className='cursor-pointer whitespace-nowrap text-xs md:text-base'
-                  onClick={() => loginWithRedirect()}
-                >
-                  ログイン
-                </p>
+      <ThemeProvider theme={myTheme}>
+        <AppBar position='static'>
+          <Toolbar>
+            <RamenDiningIcon className='mr-2' />
+            <Typography
+              variant='h6'
+              className='mr-3 font-black'
+              component='div'
+              sx={{ display: { sm: 'block' } }}
+            >
+              <Link href='/'>JIROES</Link>
+            </Typography>
+            <Search>
+              <StyledInputBase
+                placeholder='店名・エリア検索'
+                inputProps={{ 'aria-label': 'search' }}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </Search>
+            <SearchIcon className='cursor-pointer' onClick={handleSearch} />
+            <Box sx={{ flexGrow: 1 }} />
+            {isAuthenticated ? (
+              <>
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                  <IconButton
+                    size='large'
+                    edge='end'
+                    aria-label='account of current user'
+                    aria-controls={menuId}
+                    aria-haspopup='true'
+                    onClick={handleProfileMenuOpen}
+                    color='inherit'
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                </Box>
+                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                  <IconButton
+                    size='large'
+                    aria-label='show more'
+                    aria-controls={mobileMenuId}
+                    aria-haspopup='true'
+                    onClick={handleMobileMenuOpen}
+                    color='inherit'
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                </Box>
+              </>
+            ) : (
+              <div className='flex items-center'>
+                <div>
+                  <p
+                    className='cursor-pointer whitespace-nowrap text-xs md:text-base'
+                    onClick={() => loginWithRedirect()}
+                  >
+                    ログイン
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
+            )}
+          </Toolbar>
+        </AppBar>
+      </ThemeProvider>
       {renderMobileMenu}
       {renderMenu}
     </Box>
