@@ -42,27 +42,13 @@ function a11yProps(index) {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const resShop = await api.get(`/shops/${params.shopId}`)
   const shop = resShop.data
   const resReviews = await api.get(`/shops/${params.shopId}/reviews`)
   const reviews = resReviews.data
   return {
     props: { shop: shop, reviews: reviews },
-    revalidate: 3,
-  }
-}
-
-export async function getStaticPaths() {
-  const res = await api.get('/shops')
-  const shops = await res.data
-
-  const paths = shops.map((shop) => ({
-    params: { shopId: shop.id.toString() },
-  }))
-  return {
-    paths,
-    fallback: true,
   }
 }
 

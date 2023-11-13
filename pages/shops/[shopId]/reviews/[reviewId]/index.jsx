@@ -56,7 +56,7 @@ export default function ReviewPage({ review }) {
         },
       }
       await api.delete(`/shops/${shopId}/reviews/${reviewId}`, headers)
-      router.push(`/shops/${shopId}/reviews`)
+      router.push(`/shops/${shopId}`)
       handleClose()
     } catch (error) {
       console.error('削除中にエラーが発生しました:', error)
