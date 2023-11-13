@@ -30,13 +30,7 @@ export default function NewReview() {
     formState: { errors },
     control,
   } = useForm({ resolver: yupResolver(schema) })
-  const {
-    user,
-    isAuthenticated,
-    isLoading,
-    getAccessTokenSilently,
-    getAccessTokenWithPopup,
-  } = useAuth0()
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0()
   const router = useRouter()
   const { shopId } = router.query
   const [token, setToken] = useState('')
@@ -45,33 +39,18 @@ export default function NewReview() {
     const getToken = async () => {
       try {
         const accessToken = await getAccessTokenSilently({
-          domain: `${process.env['NEXT_PUBLIC_AUTH0_DOMAIN']}`,
-          clientId: `${process.env['NEXT_PUBLIC_AUTH0_CLIENT_ID']}`,
           authorizationParams: {
             audience: `${process.env['NEXT_PUBLIC_AUTH0_AUDIENCE']}`,
-            redirect_uri: `${process.env['NEXT_PUBLIC_BASE_URL']}`,
-            scope: 'read:current_user update:current_user_metadata',
+            scope: 'read:current_user',
           },
         })
         setToken(accessToken)
       } catch (e) {
         console.log(e.message)
-        if (isAuthenticated) {
-          const accessToken = await getAccessTokenWithPopup({
-            domain: `${process.env['NEXT_PUBLIC_AUTH0_DOMAIN']}`,
-            clientId: `${process.env['NEXT_PUBLIC_AUTH0_CLIENT_ID']}`,
-            authorizationParams: {
-              audience: `${process.env['NEXT_PUBLIC_AUTH0_AUDIENCE']}`,
-              redirect_uri: `${process.env['NEXT_PUBLIC_BASE_URL']}`,
-              scope: 'read:current_user update:current_user_metadata',
-            },
-          })
-          setToken(accessToken)
-        }
       }
     }
     getToken()
-  }, [getAccessTokenSilently, getAccessTokenWithPopup, isAuthenticated])
+  }, [getAccessTokenSilently])
 
   async function onSubmit(data) {
     try {
