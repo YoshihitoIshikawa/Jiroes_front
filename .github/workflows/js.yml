@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: /home/runner/work/Jiroes_front/Jiroes_portfolio/front
+        working-directory: ./front
 
     steps:
       - name: Checkout code
