@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, TextField } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'

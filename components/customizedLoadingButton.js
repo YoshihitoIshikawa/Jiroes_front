@@ -1,5 +1,5 @@
-import LoadingButton from '@mui/lab/LoadingButton'
 import SendIcon from '@mui/icons-material/Send'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 export default function CustomizedLoadingButton({ loading }) {
   return (
