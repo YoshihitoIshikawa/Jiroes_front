@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-import api from '@/components/api'
+import api from '../components/api'
 
 export default function SearchResults() {
   const router = useRouter()

@@ -1,10 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 
 import EditReview from './edit'
+import api from '../../../../../components/api'
 
 jest.mock('next/router')
 jest.mock('@auth0/auth0-react')
@@ -108,7 +108,7 @@ describe('EditReview', () => {
     formData.append('score', selectedScore)
     formData.append('image', fileInput)
 
-    jest.spyOn(axios, 'patch').mockResolvedValue({ data: formData })
+    jest.spyOn(api, 'patch').mockResolvedValue({ data: formData })
 
     const token = 'dummyToken'
     const headers = {
@@ -120,8 +120,8 @@ describe('EditReview', () => {
     const submitButton = screen.getByText('送信')
     await userEvent.click(submitButton)
 
-    expect(await axios.patch).toHaveBeenCalledWith(
-      `http://localhost:3000/api/v1/shops/${router.query.shopId}/reviews/${router.query.reviewId}`,
+    expect(await api.patch).toHaveBeenCalledWith(
+      `/shops/${router.query.shopId}/reviews/${router.query.reviewId}`,
       expect.any(FormData),
       { headers: headers },
     )
