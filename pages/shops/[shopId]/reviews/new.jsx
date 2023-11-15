@@ -15,6 +15,7 @@ import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 
 import api from '@/components/api'
+import CustomizedLoadingButton from '@/components/customizedLoadingButton'
 
 export default function NewReview() {
   const schema = yup.object({
@@ -34,6 +35,7 @@ export default function NewReview() {
   const router = useRouter()
   const { shopId } = router.query
   const [token, setToken] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getToken = async () => {
@@ -54,6 +56,7 @@ export default function NewReview() {
 
   async function onSubmit(data) {
     try {
+      setLoading(true)
       const headers = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -156,9 +159,7 @@ export default function NewReview() {
             <div className='mt-2 text-xs text-red-600'>{errors.image?.message}</div>
           </Box>
           <input type='hidden' name='sub' value={user.sub} />
-          <Button sx={{ width: 100, marginBottom: 10 }} variant='outlined' type='submit'>
-            送信
-          </Button>
+          <CustomizedLoadingButton loading={loading} />
         </form>
       </div>
     )

@@ -15,6 +15,7 @@ import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 
 import api from '@/components/api'
+import CustomizedLoadingButton from '@/components/customizedLoadingButton'
 
 export async function getServerSideProps({ params }) {
   const res = await api.get(`/shops/${params.shopId}/reviews/${params.reviewId}`)
@@ -42,6 +43,7 @@ export default function EditReview({ review }) {
   const router = useRouter()
   const { shopId, reviewId } = router.query
   const [token, setToken] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getToken = async () => {
@@ -62,6 +64,7 @@ export default function EditReview({ review }) {
 
   async function onSubmit(data) {
     try {
+      setLoading(true)
       const headers = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -168,9 +171,7 @@ export default function EditReview({ review }) {
             <div className='mt-2 text-xs text-red-600'>{errors.image?.message}</div>
           </Box>
           <input type='hidden' name='sub' value={user.sub} />
-          <Button sx={{ width: 100, marginBottom: 10 }} variant='outlined' type='submit'>
-            送信
-          </Button>
+          <CustomizedLoadingButton loading={loading} />
         </form>
       </div>
     )
