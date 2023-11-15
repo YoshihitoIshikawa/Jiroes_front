@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import axios from 'axios'
 import { useRouter } from 'next/router'
 
 import SearchResults from './search'
+import api from '../components/api'
 
 jest.mock('next/router')
 
@@ -13,7 +13,7 @@ describe('Search result page', () => {
       { id: 2, name: 'Shop 2', access: 'Access 2' },
     ]
 
-    jest.spyOn(axios, 'get').mockResolvedValue({ data: mockSearchResults })
+    jest.spyOn(api, 'get').mockResolvedValue({ data: mockSearchResults })
 
     useRouter.mockReturnValue({
       query: { keyword: 'Shop' },
@@ -21,9 +21,7 @@ describe('Search result page', () => {
 
     render(<SearchResults />)
 
-    expect(axios.get).toHaveBeenCalledWith(
-      'http://localhost:3000/api/v1/shops/search?search=Shop',
-    )
+    expect(api.get).toHaveBeenCalledWith('/shops/search?search=Shop')
 
     expect(await screen.findByText('Shop 1')).toBeInTheDocument()
     expect(await screen.findByText('Shop 2')).toBeInTheDocument()
@@ -32,7 +30,7 @@ describe('Search result page', () => {
   })
 
   test('should not render search results when no matching shops are found', async () => {
-    jest.spyOn(axios, 'get').mockResolvedValue({ data: [] })
+    jest.spyOn(api, 'get').mockResolvedValue({ data: [] })
 
     useRouter.mockReturnValue({
       query: { keyword: 'Shop' },
@@ -40,9 +38,7 @@ describe('Search result page', () => {
 
     render(<SearchResults />)
 
-    expect(axios.get).toHaveBeenCalledWith(
-      'http://localhost:3000/api/v1/shops/search?search=Shop',
-    )
+    expect(api.get).toHaveBeenCalledWith('/shops/search?search=Shop')
 
     expect(await screen.queryByText('Shop 1')).not.toBeInTheDocument()
     expect(await screen.queryByText('Access 1')).not.toBeInTheDocument()

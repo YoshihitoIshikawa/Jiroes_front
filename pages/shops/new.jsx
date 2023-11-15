@@ -7,8 +7,8 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-import api from '@/components/api'
-import CustomizedLoadingButton from '@/components/customizedLoadingButton'
+import api from '../../components/api'
+import CustomizedLoadingButton from '../../components/customizedLoadingButton'
 
 export default function NewShop() {
   const schema = yup.object({

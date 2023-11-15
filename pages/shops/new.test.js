@@ -1,9 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import axios from 'axios'
 
 import NewShop from './new'
+import api from '../../components/api'
 
 const formData = {
   access: '',
@@ -22,7 +22,7 @@ const formData = {
 }
 
 jest.mock('@auth0/auth0-react')
-jest.spyOn(axios, 'post').mockResolvedValue({ data: formData })
+jest.spyOn(api, 'post').mockResolvedValue({ data: formData })
 jest.spyOn(window, 'alert').mockImplementation((message) => {
   console.error('Alert:', message)
 })
@@ -77,10 +77,6 @@ describe('NewShop', () => {
     await userEvent.type(nameInput, 'Shop 1')
     await userEvent.click(submitButton)
 
-    expect(await axios.post).toHaveBeenCalledWith(
-      'http://localhost:3000/api/v1/shops',
-      formData,
-      { headers: headers },
-    )
+    expect(await api.post).toHaveBeenCalledWith('/shops', formData, { headers: headers })
   })
 })

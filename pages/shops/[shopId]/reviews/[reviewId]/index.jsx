@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-import api from '@/components/api'
+import api from '../../../../../components/api'
 
 export async function getServerSideProps({ params }) {
   const res = await api.get(`/shops/${params.shopId}/reviews/${params.reviewId}`)

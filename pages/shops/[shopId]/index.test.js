@@ -17,9 +17,7 @@ const reviewsData = [
     title: 'Review 1',
     score: 5,
     image: {
-      thumb: {
-        url: 'https://example.com/review1_thumb.jpg',
-      },
+      url: 'https://example.com/review1_thumb.jpg',
     },
   },
   {
@@ -27,9 +25,7 @@ const reviewsData = [
     title: 'Review 2',
     score: 4,
     image: {
-      thumb: {
-        url: 'https://example.com/review2_thumb.jpg',
-      },
+      url: 'https://example.com/review2_thumb.jpg',
     },
   },
 ]

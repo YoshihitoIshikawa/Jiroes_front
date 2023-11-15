@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import axios from 'axios'
+
+import api from '../../components/api'
 
 import IndexShops from '.'
+
 
 describe('Shops page', () => {
   test("should render all shops with the shop's name and access", async () => {
@@ -11,7 +13,7 @@ describe('Shops page', () => {
       { id: 2, name: 'Shop 3', access: 'Access 3' },
     ]
 
-    jest.spyOn(axios, 'get').mockResolvedValue({ data: mockShopsData })
+    jest.spyOn(api, 'get').mockResolvedValue({ data: mockShopsData })
 
     render(<IndexShops shops={mockShopsData} />)
 

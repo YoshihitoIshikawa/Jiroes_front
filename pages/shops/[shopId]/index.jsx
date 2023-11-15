@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
-import api from '@/components/api'
+import api from '../../../components/api'
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props
