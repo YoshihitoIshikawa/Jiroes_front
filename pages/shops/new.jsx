@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, TextField } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import api from '@/components/api'
+import CustomizedLoadingButton from '@/components/customizedLoadingButton'
 
 export default function NewShop() {
   const schema = yup.object({
@@ -22,6 +23,7 @@ export default function NewShop() {
   } = useForm({ resolver: yupResolver(schema) })
   const router = useRouter()
   const [token, setToken] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getToken = async () => {
@@ -42,6 +44,7 @@ export default function NewShop() {
 
   async function onSubmit(data) {
     try {
+      setLoading(true)
       const headers = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -198,9 +201,7 @@ export default function NewShop() {
             />
           </Box>
           <p className='mb-2 text-red-600'>{errors.user_id?.message}</p>
-          <Button sx={{ width: 100 }} variant='outlined' type='submit'>
-            送信
-          </Button>
+          <CustomizedLoadingButton loading={loading} />
         </form>
       </div>
     )
