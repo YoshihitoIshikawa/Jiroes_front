@@ -7,8 +7,8 @@ import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-import api from '@/components/api'
-import CustomizedLoadingButton from '@/components/customizedLoadingButton'
+import api from '../../../components/api'
+import CustomizedLoadingButton from '../../../components/customizedLoadingButton'
 
 export async function getServerSideProps({ params }) {
   const resShop = await api.get(`/shops/${params.shopId}`)
@@ -87,6 +87,7 @@ export default function EditShop({ shop }) {
               label='店舗名(必須)'
               variant='outlined'
               fullWidth
+              multiline
               error={errors.name ? true : false}
               helperText={errors.name?.message}
               defaultValue={shop.name}
