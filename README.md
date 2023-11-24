@@ -1,38 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# JIROES
 
-## Getting Started
+JIROESは、**二郎系ラーメン専用**の口コミ情報サイトです。<br>
+二郎を愛すジロリアンはもちろん、<br>
+初挑戦したいが不安があり中々一歩を踏み出せない方の<br>
+背中を押すことができればと思い、当サイトを作成しました。<br>
+その為、二郎系特有のルールを「ラーメン二郎の心得」という項目で説明しております。<br>
+そして「二郎系食べに行こう」と思った際にレビューや店舗の情報を得る手段として利用することが可能です。<br>
 
-First, run the development server:
+[https://jiroes-front.vercel.app/](https://jiroes-front.vercel.app/)
+<br>
+<br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+![FireShot Capture 011 -  - jiroes-front vercel app](https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/76a4af8f-79cc-49b2-8899-99f6f58961ed)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 機能紹介
+- ユーザーログイン機能
+- 店舗検索機能
+- レビュー閲覧・作成・編集・削除機能
+- 新規店舗登録・編集機能
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## 使用技術
+- バックエンド
+  - Ruby 2.7.7
+  - Ruby on Rails 6.1.7
+  - rspec-rails 5.0.3
+  - rubocop 1.32
+- フロントエンド
+  - React 18.2.0
+  - Next.js 13.4.16
+  - jest 29.7.0
+  - eslint 8.47.0
+  - prettier 3.0.3
+- Auth0　(ログイン認証)
+- Github Actions　(CI/CD)
+- Heroku　(バックエンドデプロイ先)
+- Vercel　(フロントエンドデプロイ先)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## バックエンドリポジトリ
+[Jiroes_api](https://github.com/YoshihitoIshikawa/Jiroes_api)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## ER図
+<img width="600" alt="ER図" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/c4c0b307-b296-415e-b8a3-15a7c2b2ed9b">
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
