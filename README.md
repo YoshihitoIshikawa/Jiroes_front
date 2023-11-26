@@ -12,25 +12,50 @@ JIROESは、**二郎系ラーメン専用**の口コミ情報サイトです。<
 1. ユーザーログイン機能
 2. 店舗検索機能
 3. レビュー投稿機能
-4. 新規店舗登録・編集機能
+4. 店舗登録機能
 <br>
+
 1. ユーザーログイン機能<br>
 Auth0を利用しメールアドレスとパスワードでログインが可能です。<br>
-<img width="800" alt="ER図" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/d43790d0-ac08-4bbe-8e88-bc21420bc2d1">
+<img width="700" alt="ログイン画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/d43790d0-ac08-4bbe-8e88-bc21420bc2d1">
 <br>
 <br>
 
 2. 店舗検索機能<br>
 店舗名や所在地を検索ワードとして部分一致検索が出来ます。<br>
-<img width="800" alt="ER図" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/cd994671-34c8-4b21-ae67-8f8f75f51efd">
+<img width="700" alt="検索結果画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/cd994671-34c8-4b21-ae67-8f8f75f51efd">
 <br>
 <br>
 
 3. レビュー投稿機能<br>
 画像ファイルを添付してレビュー投稿が出来ます。<br>
-<img width="800" alt="ER図" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/8b3eb9c9-ccc2-41ab-a873-88929332898c">
-投稿したレビューは店舗詳細ページでその店舗のレビューが一覧で表示されます。
+<img width="700" alt="レビュー投稿画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/8b3eb9c9-ccc2-41ab-a873-88929332898c">
+<br>
+<br>
 
+投稿したレビューは店舗詳細ページでその店舗のレビューが一覧で表示されます。
+<br>
+<img width="700" alt="レビュー一覧画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/6d304eda-d4d5-4522-9fb8-37a57886afcf">
+<br>
+<br>
+
+自身で投稿したレビューにはレビュー詳細ページにボタンが表示され編集・削除ができます。
+<br>
+<img width="700" alt="レビュー詳細画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/531a129f-c436-4a27-99d9-3bf24a86ddc7">
+<br>
+<br>
+
+4. 店舗登録機能<br>
+店舗情報を入力して新規店舗を登録出来ます。<br>
+<img width="700" alt="店舗登録画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/d46b6083-e0f8-4bd6-b232-c19d5b14f8d8">
+<br>
+<br>
+
+登録した情報は店舗詳細ページの店舗情報タブで閲覧・編集出来ます。
+<br>
+<img width="700" alt="店舗情報画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/96220471-6183-4883-9950-433cd975a134">
+<br>
+<br>
 
 
 ## 使用技術
