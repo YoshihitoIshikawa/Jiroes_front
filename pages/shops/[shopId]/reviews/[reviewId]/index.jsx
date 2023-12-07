@@ -7,6 +7,8 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import FavoriteIcon from '@mui/icons-material/Favorite'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -42,6 +44,31 @@ export default function ReviewPage({ review }) {
     handleClickOpen()
   }
 
+  const [liked, setLiked] = useState(false)
+  const [numberOfLikes, setNumberOfLikes] = useState(review.number_of_likes)
+
+  const handleLikeClick = async () => {
+    try {
+      const headers = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+      const response = liked
+        ? await api.delete(`/shops/${shopId}/reviews/${reviewId}/likes`, headers)
+        : await api.post(
+            `/shops/${shopId}/reviews/${reviewId}/likes`,
+            { sub: user.sub },
+            headers,
+          )
+
+      setLiked(!liked)
+      setNumberOfLikes(response.data.number_of_likes)
+    } catch (error) {
+      console.error('いいね処理中にエラーが発生しました:', error)
+    }
+  }
+
   const confirmDelete = async () => {
     try {
       const headers = {
@@ -54,6 +81,25 @@ export default function ReviewPage({ review }) {
       handleClose()
     } catch (error) {
       console.error('削除中にエラーが発生しました:', error)
+    }
+  }
+
+  const checkCurrentUserLiked = async () => {
+    try {
+      const response = await api.get(`/shops/${shopId}/reviews/${reviewId}/likes`)
+
+      // レスポンスからsubの配列を取得
+      const subList = response.data.map((item) => item.sub)
+
+      // ユーザーのsubが含まれているかチェック
+      if (subList.includes(user.sub)) {
+        setLiked(true) // ユーザーがいいねをしている場合、likedをtrueに設定
+      } else {
+        setLiked(false) // ユーザーがいいねをしていない場合、likedをfalseに設定
+      }
+    } catch (error) {
+      console.error('いいねの検証中にエラーが発生しました:', error)
+      setLiked(false) // エラーが発生した場合も、likedをfalseに設定
     }
   }
 
@@ -72,6 +118,7 @@ export default function ReviewPage({ review }) {
       }
     }
     getToken()
+    checkCurrentUserLiked()
   }, [getAccessTokenSilently])
 
   if (isLoading) {
@@ -114,6 +161,15 @@ export default function ReviewPage({ review }) {
                   </tr>
                 </tbody>
               </table>
+              {liked ? (
+                <Button variant='outlined' onClick={handleLikeClick}>
+                  <FavoriteIcon /> {numberOfLikes}
+                </Button>
+              ) : (
+                <Button variant='outlined' onClick={handleLikeClick}>
+                  <FavoriteBorderIcon /> {numberOfLikes}
+                </Button>
+              )}
               {user.sub == review.sub ? (
                 <div>
                   <Link
