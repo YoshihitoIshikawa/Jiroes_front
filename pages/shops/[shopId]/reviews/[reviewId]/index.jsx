@@ -55,23 +55,43 @@ export default function ReviewPage({ review }) {
         },
       }
 
-      const likesData = await api.get(`/shops/${shopId}/reviews/${reviewId}/likes`)
-      const likes = await likesData.data
-      const currentUserLike = await likes.find((like) => like.sub === user.sub)
+      // const response = liked
+      //   ? await api.delete(
+      //       `/shops/${shopId}/reviews/${reviewId}/likes/${currentUserLike.id}`,
+      //       headers,
+      //     )
+      //   : await api.post(
+      //       `/shops/${shopId}/reviews/${reviewId}/likes`,
+      //       { sub: user.sub },
+      //       headers,
+      //     )
 
-      const response = liked
-        ? await api.delete(
-            `/shops/${shopId}/reviews/${reviewId}/likes/${currentUserLike.id}`,
-            headers,
-          )
-        : await api.post(
-            `/shops/${shopId}/reviews/${reviewId}/likes`,
-            { sub: user.sub },
-            headers,
-          )
+      if (liked) {
+        const likesData = await api.get(`/shops/${shopId}/reviews/${reviewId}/likes`)
+        const likes = await likesData.data
+        const currentUserLike = await likes.find((like) => like.sub === user.sub)
 
-      setLiked(!liked)
-      setNumberOfLikes(response.data.number_of_likes)
+        const response = await api.delete(
+          `/shops/${shopId}/reviews/${reviewId}/likes/${currentUserLike.id}`,
+          headers,
+        )
+        const data = response.data
+
+        setLiked(!liked)
+        setNumberOfLikes(data[1].number_of_likes)
+        console.log(data[1])
+      } else {
+        const response = await api.post(
+          `/shops/${shopId}/reviews/${reviewId}/likes`,
+          { sub: user.sub },
+          headers,
+        )
+        const data = response.data
+
+        setLiked(!liked)
+        setNumberOfLikes(data[1].number_of_likes)
+        console.log(data[1])
+      }
     } catch (error) {
       console.error('いいね処理中にエラーが発生しました:', error)
     }
