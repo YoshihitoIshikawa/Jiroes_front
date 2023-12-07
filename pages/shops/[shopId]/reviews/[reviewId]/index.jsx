@@ -54,8 +54,16 @@ export default function ReviewPage({ review }) {
           Authorization: `Bearer ${token}`,
         },
       }
+
+      const likesData = await api.get(`/shops/${shopId}/reviews/${reviewId}/likes`)
+      const likes = await likesData.data
+      const currentUserLike = await likes.find((like) => like.sub === user.sub)
+
       const response = liked
-        ? await api.delete(`/shops/${shopId}/reviews/${reviewId}/likes`, headers)
+        ? await api.delete(
+            `/shops/${shopId}/reviews/${reviewId}/likes/${currentUserLike.id}`,
+            headers,
+          )
         : await api.post(
             `/shops/${shopId}/reviews/${reviewId}/likes`,
             { sub: user.sub },
@@ -88,18 +96,15 @@ export default function ReviewPage({ review }) {
     try {
       const response = await api.get(`/shops/${shopId}/reviews/${reviewId}/likes`)
 
-      // レスポンスからsubの配列を取得
       const subList = response.data.map((item) => item.sub)
 
-      // ユーザーのsubが含まれているかチェック
       if (subList.includes(user.sub)) {
-        setLiked(true) // ユーザーがいいねをしている場合、likedをtrueに設定
+        setLiked(true)
       } else {
-        setLiked(false) // ユーザーがいいねをしていない場合、likedをfalseに設定
+        setLiked(false)
       }
     } catch (error) {
       console.error('いいねの検証中にエラーが発生しました:', error)
-      setLiked(false) // エラーが発生した場合も、likedをfalseに設定
     }
   }
 
@@ -118,8 +123,11 @@ export default function ReviewPage({ review }) {
       }
     }
     getToken()
-    checkCurrentUserLiked()
-  }, [getAccessTokenSilently])
+
+    if (user) {
+      checkCurrentUserLiked()
+    }
+  }, [getAccessTokenSilently, user])
 
   if (isLoading) {
     return (
