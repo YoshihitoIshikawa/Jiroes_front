@@ -189,13 +189,21 @@ export default function ReviewPage({ review }) {
               <div className='flex'>
                 {liked ? (
                   <ThemeProvider theme={myTheme}>
-                    <Button variant='outlined' onClick={handleLikeClick}>
+                    <Button
+                      variant='outlined'
+                      data-testid='likeButton'
+                      onClick={handleLikeClick}
+                    >
                       <FavoriteIcon /> {numberOfLikes}
                     </Button>
                   </ThemeProvider>
                 ) : (
                   <ThemeProvider theme={myTheme}>
-                    <Button variant='outlined' onClick={handleLikeClick}>
+                    <Button
+                      variant='outlined'
+                      data-testid='likeButton'
+                      onClick={handleLikeClick}
+                    >
                       <FavoriteBorderIcon /> {numberOfLikes}
                     </Button>
                   </ThemeProvider>
