@@ -10,6 +10,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Image from 'next/image'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -25,7 +26,8 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function ReviewPage({ review }) {
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0()
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithRedirect } =
+    useAuth0()
   const router = useRouter()
   const { shopId, reviewId } = router.query
   const [token, setToken] = useState('')
@@ -54,17 +56,6 @@ export default function ReviewPage({ review }) {
           Authorization: `Bearer ${token}`,
         },
       }
-
-      // const response = liked
-      //   ? await api.delete(
-      //       `/shops/${shopId}/reviews/${reviewId}/likes/${currentUserLike.id}`,
-      //       headers,
-      //     )
-      //   : await api.post(
-      //       `/shops/${shopId}/reviews/${reviewId}/likes`,
-      //       { sub: user.sub },
-      //       headers,
-      //     )
 
       if (liked) {
         const likesData = await api.get(`/shops/${shopId}/reviews/${reviewId}/likes`)
@@ -149,6 +140,14 @@ export default function ReviewPage({ review }) {
     }
   }, [getAccessTokenSilently, user])
 
+  const myTheme = createTheme({
+    palette: {
+      primary: {
+        main: '#f06292',
+      },
+    },
+  })
+
   if (isLoading) {
     return (
       <div className='flex flex-col sm:w-1/2'>
@@ -189,48 +188,54 @@ export default function ReviewPage({ review }) {
                   </tr>
                 </tbody>
               </table>
-              {liked ? (
-                <Button variant='outlined' onClick={handleLikeClick}>
-                  <FavoriteIcon /> {numberOfLikes}
-                </Button>
-              ) : (
-                <Button variant='outlined' onClick={handleLikeClick}>
-                  <FavoriteBorderIcon /> {numberOfLikes}
-                </Button>
-              )}
-              {user.sub == review.sub ? (
-                <div>
-                  <Link
-                    className='mr-4'
-                    href={`/shops/${shopId}/reviews/${reviewId}/edit`}
-                  >
-                    <Button variant='outlined'>
-                      <CreateIcon />
-                      編集
+              <div className='flex'>
+                {liked ? (
+                  <ThemeProvider theme={myTheme}>
+                    <Button variant='outlined' onClick={handleLikeClick}>
+                      <FavoriteIcon /> {numberOfLikes}
                     </Button>
-                  </Link>
-                  <Button variant='outlined' onClick={handleDelete}>
-                    <DeleteIcon />
-                    削除
-                  </Button>
-                  <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>確認</DialogTitle>
-                    <DialogContent>
-                      <DialogContentText>本当に削除しますか？</DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                      <Button onClick={handleClose} color='primary'>
-                        キャンセル
+                  </ThemeProvider>
+                ) : (
+                  <ThemeProvider theme={myTheme}>
+                    <Button variant='outlined' onClick={handleLikeClick}>
+                      <FavoriteBorderIcon /> {numberOfLikes}
+                    </Button>
+                  </ThemeProvider>
+                )}
+                {user.sub == review.sub ? (
+                  <div>
+                    <Link
+                      className='mx-4'
+                      href={`/shops/${shopId}/reviews/${reviewId}/edit`}
+                    >
+                      <Button variant='outlined'>
+                        <CreateIcon />
+                        編集
                       </Button>
-                      <Button onClick={confirmDelete} color='primary'>
-                        削除
-                      </Button>
-                    </DialogActions>
-                  </Dialog>
-                </div>
-              ) : (
-                <div></div>
-              )}
+                    </Link>
+                    <Button variant='outlined' onClick={handleDelete}>
+                      <DeleteIcon />
+                      削除
+                    </Button>
+                    <Dialog open={open} onClose={handleClose}>
+                      <DialogTitle>確認</DialogTitle>
+                      <DialogContent>
+                        <DialogContentText>本当に削除しますか？</DialogContentText>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleClose} color='primary'>
+                          キャンセル
+                        </Button>
+                        <Button onClick={confirmDelete} color='primary'>
+                          削除
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -268,6 +273,11 @@ export default function ReviewPage({ review }) {
                   </tr>
                 </tbody>
               </table>
+              <ThemeProvider theme={myTheme}>
+                <Button variant='outlined' onClick={loginWithRedirect}>
+                  <FavoriteBorderIcon /> {numberOfLikes}
+                </Button>
+              </ThemeProvider>
             </div>
           </div>
         </div>
