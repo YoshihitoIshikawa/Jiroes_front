@@ -70,7 +70,6 @@ export default function ReviewPage({ review }) {
 
         setLiked(!liked)
         setNumberOfLikes(data[1].number_of_likes)
-        console.log(data[1])
       } else {
         const response = await api.post(
           `/shops/${shopId}/reviews/${reviewId}/likes`,
@@ -81,7 +80,6 @@ export default function ReviewPage({ review }) {
 
         setLiked(!liked)
         setNumberOfLikes(data[1].number_of_likes)
-        console.log(data[1])
       }
     } catch (error) {
       console.error('いいね処理中にエラーが発生しました:', error)
