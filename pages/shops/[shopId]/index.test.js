@@ -9,6 +9,9 @@ jest.mock('next/router')
 const shopData = {
   id: 1,
   name: 'Shop 1',
+  address: '〒108-0073 東京都港区三田2-16-4',
+  latitude: 35.6480611,
+  longitude: 139.7416267,
 }
 
 const reviewsData = [
@@ -63,4 +66,15 @@ test('should render the shop info when the shop info tab is clicked', async () =
   const shopAccess = screen.getByText('アクセス')
   expect(shopAddress).toBeInTheDocument()
   expect(shopAccess).toBeInTheDocument()
+})
+
+test('should render the google map dialog when the map button is clicked', async () => {
+  const shopInfoTab = screen.getByText('店舗情報')
+  await userEvent.click(shopInfoTab)
+
+  const mapButton = screen.getByText('MAP')
+  await userEvent.click(mapButton)
+
+  const mapDialog = screen.getByRole('dialog')
+  await expect(mapDialog).toBeInTheDocument()
 })
