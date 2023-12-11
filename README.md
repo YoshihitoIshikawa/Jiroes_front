@@ -13,6 +13,8 @@ JIROESは、**二郎系ラーメン専用**の口コミ情報サイトです。<
 2. 店舗検索機能
 3. レビュー投稿機能
 4. 店舗登録機能
+5. Google Map API機能
+6. レビューいいね機能
 <br>
 
 1. ユーザーログイン機能<br>
@@ -35,13 +37,13 @@ Auth0を利用しメールアドレスとパスワードでログインが可能
 
 投稿したレビューは店舗詳細ページでその店舗のレビューが一覧で表示されます。
 <br>
-<img width="700" alt="レビュー一覧画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/6d304eda-d4d5-4522-9fb8-37a57886afcf">
+<img width="700" alt="レビュー一覧画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/245ca7ff-4c04-4246-ab46-9414cad201a2">
 <br>
 <br>
 
 自身で投稿したレビューにはレビュー詳細ページにボタンが表示され編集・削除ができます。
 <br>
-<img width="700" alt="レビュー詳細画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/531a129f-c436-4a27-99d9-3bf24a86ddc7">
+<img width="700" alt="レビュー詳細画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/29df2a4c-125c-4a2e-ad3d-aae84cfad7e7">
 <br>
 <br>
 
@@ -53,10 +55,21 @@ Auth0を利用しメールアドレスとパスワードでログインが可能
 
 登録した情報は店舗詳細ページの店舗情報タブで閲覧・編集出来ます。
 <br>
-<img width="700" alt="店舗情報画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/96220471-6183-4883-9950-433cd975a134">
+<img width="700" alt="店舗情報画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/dea8346a-3d72-45fb-a9fd-55738b7813eb">
 <br>
 <br>
 
+5. Google Map API機能<br>
+店舗詳細ページのマップボタンからgoogle map apiを呼び出す事が出来ます。<br>
+<img width="700" alt="店舗登録画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/f82069cf-72ed-41c7-b8ea-4bfaf4c145f3">
+<br>
+<br>
+
+6. レビューいいね機能<br>
+ログインユーザーはレビューをいいねする事が出来ます。<br>
+<img width="700" alt="店舗登録画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/6276af3f-c9be-4eea-94ad-d6c61bb30e9f">
+<br>
+<br>
 
 ## 使用技術
 - バックエンド
@@ -70,26 +83,28 @@ Auth0を利用しメールアドレスとパスワードでログインが可能
   - jest 29.7.0
   - eslint 8.47.0
   - prettier 3.0.3
-  - Auth0 (ログイン認証用外部API)
 - インフラ
   - Github Actions (CI/CD)
   - S3 (画像アップロード先)
   - postgreSQL (データベース)
   - Heroku (バックエンドデプロイ先)
   - Vercel (フロントエンドデプロイ先)
+  - Auth0 (ログイン認証用外部API)
+  - Google Maps Platform (Google Map利用外部API)
+    - Geocoding API (緯度・経度の取得)
+    - Maps JavaScript API (地図の表示)
  
 ## 開発経緯
-私が二郎系ラーメンが好きで、二郎系をもっと多くの人に知ってもらいたいという思いから開発に至りました。  
-二郎系というと「ルールが厳しくて入りにくい」というイメージがついており、  
-入店のハードルが高くなっている一面があると思っています。  
+私自身二郎系ラーメンが好きで、二郎系をもっと多くの人に知ってもらいたいという思いがあります。  
+ですが二郎系というと、「ルールが厳しくて入りにくい」というイメージがついており、  
+入店のハードルが高いと考えている方が一定数いらっしゃると思います。  
 そこで、二郎系特有のルールや店舗情報を一度に収集出来る場所があれば  
-そのハードルを下げる事ができると思い当アプリを開発しました。
+そういった方々の不安を取り除く事ができると思い当アプリを開発しました。
 
 ## バックエンドリポジトリ
 [Jiroes_api](https://github.com/YoshihitoIshikawa/Jiroes_api)
 
 ## ER図
-<img width="600" alt="ER図" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/c4c0b307-b296-415e-b8a3-15a7c2b2ed9b">
-
+<img width="600" alt="ER図" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/9a805041-4d7f-4ee9-aeee-c942afce2e3a">
 
 
