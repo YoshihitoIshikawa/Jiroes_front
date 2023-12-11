@@ -161,7 +161,7 @@ export default function ShopPage({ shop, reviews }) {
                           <RoomIcon />
                           MAP
                         </Button>
-                        <Dialog open={open} onClose={handleClose} maxWidth='sm'>
+                        <Dialog open={open} onClose={handleClose} maxWidth='xl'>
                           <DialogContent>
                             <div style={{ height: '60vh', width: '60vw' }}>
                               <LoadScript
