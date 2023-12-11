@@ -1,6 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import { GoogleMap, Marker, InfoWindow, LoadScript } from '@react-google-maps/api'
 import CreateIcon from '@mui/icons-material/Create'
+import RoomIcon from '@mui/icons-material/Room'
 import { Button } from '@mui/material'
+import Dialog from '@mui/material/Dialog'
+import DialogContent from '@mui/material/DialogContent'
 import Box from '@mui/material/Box'
 import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
@@ -8,6 +12,7 @@ import moment from 'moment'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import * as React from 'react'
 
@@ -56,6 +61,16 @@ export default function ShopPage({ shop, reviews }) {
   const [value, setValue] = React.useState(0)
 
   const { isAuthenticated } = useAuth0()
+
+  const [open, setOpen] = useState(false)
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -138,6 +153,42 @@ export default function ShopPage({ shop, reviews }) {
                     <tr className='border-b dark:border-neutral-500'>
                       <th className='whitespace-nowrap px-6 py-4'>所在地</th>
                       <td className='whitespace-pre-wrap px-6 py-4'>{shop.address}</td>
+                    </tr>
+                    <tr className='border-b dark:border-neutral-500'>
+                      <th className='whitespace-nowrap px-6 py-4'>地図</th>
+                      <td className='whitespace-pre-wrap px-6 py-4'>
+                        <Button variant='outlined' onClick={handleClickOpen}>
+                          <RoomIcon />
+                          MAP
+                        </Button>
+                        <Dialog open={open} onClose={handleClose} maxWidth='sm'>
+                          <DialogContent>
+                            <div style={{ height: '60vh', width: '60vw' }}>
+                              <LoadScript
+                                googleMapsApiKey={
+                                  process.env['NEXT_PUBLIC_GOOGLE_MAP_API_KEY']
+                                }
+                              >
+                                <GoogleMap
+                                  mapContainerStyle={{ width: '100%', height: '100%' }}
+                                  center={{
+                                    lat: shop.latitude,
+                                    lng: shop.longitude,
+                                  }}
+                                  zoom={16}
+                                >
+                                  <Marker
+                                    position={{
+                                      lat: shop.latitude,
+                                      lng: shop.longitude,
+                                    }}
+                                  />
+                                </GoogleMap>
+                              </LoadScript>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </td>
                     </tr>
                     <tr className='border-b dark:border-neutral-500'>
                       <th className='whitespace-nowrap px-6 py-4'>アクセス</th>
