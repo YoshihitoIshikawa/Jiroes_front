@@ -114,6 +114,9 @@ export default function PrimarySearchAppBar() {
         <Link href={'/profile'}>マイページ</Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
+        <Link href={'/likedReviews'}>いいね済レビュー一覧</Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
         <Link href={'/shops'}>店舗一覧</Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
@@ -144,6 +147,9 @@ export default function PrimarySearchAppBar() {
     >
       <MenuItem onClick={handleMenuClose}>
         <Link href={'/profile'}>マイページ</Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link href={'/likedReviews'}>いいね済レビュー一覧</Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link href={'/shops'}>店舗一覧</Link>
