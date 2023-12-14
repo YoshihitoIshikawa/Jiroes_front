@@ -18,18 +18,22 @@ JIROESは、**二郎系ラーメン専用**の口コミ情報サイトです。<
 <br>
 
 1. ユーザーログイン機能<br>
-Auth0を利用しメールアドレスとパスワードでログインが可能です。<br>
+ヘッダー右上の「ログイン」をクリックして、Auth0を利用しメールアドレスとパスワードでログインが可能です。<br>
+ゲストログインは、<br>
+email: guest@example.com<br>
+password: 123456Aa<br>
+でゲストアカウントにログイン出来ます。<br>
 <img width="700" alt="ログイン画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/d43790d0-ac08-4bbe-8e88-bc21420bc2d1">
 <br>
 <br>
 
-2. 店舗検索機能<br>
+3. 店舗検索機能<br>
 店舗名や所在地を検索ワードとして部分一致検索が出来ます。<br>
 <img width="700" alt="検索結果画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/cd994671-34c8-4b21-ae67-8f8f75f51efd">
 <br>
 <br>
 
-3. レビュー投稿機能<br>
+4. レビュー投稿機能<br>
 画像ファイルを添付してレビュー投稿が出来ます。<br>
 <img width="700" alt="レビュー投稿画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/8b3eb9c9-ccc2-41ab-a873-88929332898c">
 <br>
