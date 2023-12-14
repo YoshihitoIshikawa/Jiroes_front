@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
-import api from '@/components/api'
+import api from '../components/api'
 
 const LikedReviews = () => {
   const [token, setToken] = useState('')
