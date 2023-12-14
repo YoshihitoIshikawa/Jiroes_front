@@ -213,10 +213,24 @@ export default function PrimarySearchAppBar() {
               <div className='flex items-center'>
                 <div>
                   <p
-                    className='cursor-pointer whitespace-nowrap text-xs md:text-base'
+                    className='mr-4 cursor-pointer whitespace-nowrap text-xs md:text-base'
                     onClick={() => loginWithRedirect()}
                   >
                     ログイン
+                  </p>
+                </div>
+                <div>
+                  <p
+                    className='cursor-pointer whitespace-nowrap text-xs md:text-base'
+                    onClick={() =>
+                      loginWithRedirect({
+                        authorizationParams: {
+                          screen_hint: 'signup',
+                        },
+                      })
+                    }
+                  >
+                    新規登録
                   </p>
                 </div>
               </div>
