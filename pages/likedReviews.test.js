@@ -1,11 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { render, waitFor, screen } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 
 import LikedReviews from './LikedReviews'
+import api from '../components/api'
 
 jest.mock('@auth0/auth0-react')
-
-import api from '../components/api'
 
 describe('LikedReviews Component', () => {
   const likedReviews = [
