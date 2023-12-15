@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { render, waitFor } from '@testing-library/react'
 
-import LikedReviews from './LikedReviews'
+import LikedReviews from './likedReviews'
 import api from '../components/api'
 
 jest.mock('@auth0/auth0-react')
