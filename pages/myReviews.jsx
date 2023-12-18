@@ -9,11 +9,11 @@ import api from '../components/api'
 
 const MyReviews = () => {
   const [token, setToken] = useState('')
-  const [likedReviews, setLikedReviews] = useState([])
+  const [myReviews, setMyReviews] = useState([])
 
   const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
-  const fetchLikedReviews = async () => {
+  const fetchMyReviews = async () => {
     try {
       const headers = {
         headers: {
@@ -23,7 +23,7 @@ const MyReviews = () => {
       const response = await api.get('/my_reviews/index', headers)
       return response.data
     } catch (error) {
-      console.error('Error fetching liked reviews:', error)
+      console.error('Error fetching posted reviews:', error)
       return []
     }
   }
@@ -44,11 +44,11 @@ const MyReviews = () => {
     }
     getToken()
 
-    const getLikedReviews = async () => {
-      const reviews = await fetchLikedReviews()
-      setLikedReviews(reviews)
+    const getMyReviews = async () => {
+      const reviews = await fetchMyReviews()
+      setMyReviews(reviews)
     }
-    getLikedReviews()
+    getMyReviews()
   }, [token])
 
   if (isLoading) {
@@ -63,9 +63,9 @@ const MyReviews = () => {
     return (
       <div>
         <h2 className='mb-8 text-4xl'>投稿済レビュー</h2>
-        {likedReviews.length != 0 ? (
+        {myReviews.length != 0 ? (
           <div className='flex flex-col'>
-            {likedReviews.map((review) => (
+            {myReviews.map((review) => (
               <Box className='m-4 flex' key={review.id}>
                 <div className='mr-10'>
                   <Image
