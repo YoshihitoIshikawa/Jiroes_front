@@ -84,10 +84,11 @@ const MyReviews = () => {
                   >
                     {review.title}
                   </Link>
-                  <p className='mt-4 text-lg'>評価：{review.score} / 5</p>
-                  <p className='mt-4 text-lg'>
+                  <p className='mt-2 text-lg'>評価：{review.score} / 5</p>
+                  <p className='mt-2 text-lg'>
                     投稿日：{moment(review.created_at).format('YYYY-MM-DD')}
                   </p>
+                  <p className='mt-2 text-lg'>店舗名：{review.shop.name}</p>
                 </div>
               </Box>
             ))}
