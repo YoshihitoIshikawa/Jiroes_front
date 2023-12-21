@@ -10,9 +10,9 @@ import * as yup from 'yup'
 import CustomizedLoadingButton from '../../components/customizedLoadingButton'
 import api from '../../components/api'
 
-const UpdateUserName = () => {
+const UpdateUserEmail = () => {
   const schema = yup.object({
-    nickname: yup.string().required('新しいユーザーネームを入力して下さい。'),
+    nickname: yup.string().required('新しいメールアドレスを入力して下さい。'),
   })
 
   const {
@@ -72,16 +72,16 @@ const UpdateUserName = () => {
   if (isAuthenticated) {
     return (
       <div className='flex flex-col sm:w-1/2'>
-        <h1 className='mb-8 text-4xl'>ユーザーネーム変更</h1>
+        <h1 className='mb-8 text-4xl'>メールアドレス変更</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box mb={2}>
             <TextField
-              {...register('nickname')}
-              label='ユーザーネーム'
+              {...register('email')}
+              label='メールアドレス'
               variant='outlined'
               fullWidth
-              error={errors.nickname ? true : false}
-              helperText={errors.nickname?.message}
+              error={errors.email ? true : false}
+              helperText={errors.email?.message}
             />
           </Box>
           <CustomizedLoadingButton loading={loading} />
@@ -97,4 +97,4 @@ const UpdateUserName = () => {
   }
 }
 
-export default UpdateUserName
+export default UpdateUserEmail
