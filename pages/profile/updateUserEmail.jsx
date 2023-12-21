@@ -12,7 +12,7 @@ import api from '../../components/api'
 
 const UpdateUserEmail = () => {
   const schema = yup.object({
-    nickname: yup.string().required('新しいメールアドレスを入力して下さい。'),
+    email: yup.string().required('新しいメールアドレスを入力して下さい。'),
   })
 
   const {
