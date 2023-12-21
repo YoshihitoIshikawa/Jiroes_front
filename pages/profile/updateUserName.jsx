@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, TextField } from '@mui/material'
@@ -9,10 +8,11 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import CustomizedLoadingButton from '../../components/customizedLoadingButton'
+import api from '../../components/api'
 
 const Profile = () => {
   const schema = yup.object({
-    name: yup.string().required('新しいユーザーネームを入力して下さい。'),
+    nickname: yup.string().required('新しいユーザーネームを入力して下さい。'),
   })
 
   const {
@@ -31,7 +31,7 @@ const Profile = () => {
       try {
         const accessToken = await getAccessTokenSilently({
           authorizationParams: {
-            audience: `${process.env['NEXT_PUBLIC_AUTH0_AUDIENCE']}`,
+            audience: process.env['NEXT_PUBLIC_AUTH0_AUDIENCE'],
             scope: 'update:users',
           },
         })
@@ -41,7 +41,7 @@ const Profile = () => {
       }
     }
     getToken()
-  }, [getAccessTokenSilently])
+  }, [])
 
   async function onSubmit(data) {
     try {
@@ -51,14 +51,11 @@ const Profile = () => {
           Authorization: `Bearer ${token}`,
         },
       }
-      await axios.patch(
-        `https://${process.env['NEXT_PUBLIC_AUTH0_DOMAIN']}/api/v2/users/${user.sub}`,
-        data,
-        headers,
-      )
-      router.push('/')
+      await api.patch(`/users/${user.sub}`, data, headers)
+      router.push('/profile')
     } catch (err) {
       alert('登録に失敗しました。')
+      setLoading(false)
     }
   }
 
