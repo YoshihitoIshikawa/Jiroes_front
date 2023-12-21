@@ -42,7 +42,14 @@ const Profile = () => {
             <p>{user.nickname}</p>
           </div>
           <div className='mb-10'>
-            <h2 className='mb-2 text-2xl'>メールアドレス</h2>
+            <h2 className='mb-2 text-2xl'>
+              メールアドレス
+              <span className='ml-8'>
+                <Link className='text-xl' href={'/profile/updateUserEmail'}>
+                  <Button variant='outlined'>変更</Button>
+                </Link>
+              </span>
+            </h2>
             <p>{user.email}</p>
           </div>
         </div>
