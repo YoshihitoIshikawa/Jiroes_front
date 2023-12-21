@@ -77,7 +77,7 @@ const UpdateUserName = () => {
           <Box mb={2}>
             <TextField
               {...register('nickname')}
-              label='ユーザーネーム'
+              label='新しいユーザーネーム'
               variant='outlined'
               fullWidth
               error={errors.nickname ? true : false}

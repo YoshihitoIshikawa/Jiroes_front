@@ -12,7 +12,10 @@ import api from '../../components/api'
 
 const UpdateUserEmail = () => {
   const schema = yup.object({
-    email: yup.string().required('新しいメールアドレスを入力して下さい。'),
+    email: yup
+      .string()
+      .email('メールアドレスの形式が正しくありません。')
+      .required('新しいメールアドレスを入力して下さい。'),
   })
 
   const {
@@ -77,7 +80,7 @@ const UpdateUserEmail = () => {
           <Box mb={2}>
             <TextField
               {...register('email')}
-              label='メールアドレス'
+              label='新しいメールアドレス'
               variant='outlined'
               fullWidth
               error={errors.email ? true : false}
