@@ -75,7 +75,8 @@ const UpdateUserEmail = () => {
   if (isAuthenticated) {
     return (
       <div className='flex flex-col sm:w-1/2'>
-        <h1 className='mb-8 text-4xl'>メールアドレス変更</h1>
+        <h1 className='mb-2 text-4xl'>メールアドレス変更</h1>
+        <p className='mb-8 text-lg'>※メールアドレス変更後は再度ログインが必要です。</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box mb={2}>
             <TextField
