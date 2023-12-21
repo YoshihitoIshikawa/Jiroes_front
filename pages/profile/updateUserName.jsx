@@ -52,7 +52,9 @@ const Profile = () => {
         },
       }
       await api.patch(`/users/${user.sub}`, data, headers)
-      router.push('/profile')
+      router.push('/profile').then(() => {
+        window.location.reload(true)
+      })
     } catch (err) {
       alert('登録に失敗しました。')
       setLoading(false)
