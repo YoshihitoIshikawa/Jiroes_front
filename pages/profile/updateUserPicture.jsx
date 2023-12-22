@@ -49,7 +49,7 @@ const UpdateUserPicture = () => {
 
       const formData = new FormData()
       const fileInput = document.getElementById('fileInput')
-      formData.append('image', fileInput.files[0])
+      formData.append('picture', fileInput.files[0])
 
       const headers = {
         headers: {
