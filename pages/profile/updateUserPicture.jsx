@@ -1,22 +1,22 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, TextField } from '@mui/material'
+import { Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 
 import CustomizedLoadingButton from '../../components/customizedLoadingButton'
 import api from '../../components/api'
 
-const UpdateUserName = () => {
+const UpdateUserPicture = () => {
   const schema = yup.object({
     picture: yup.string().required('新しいプロフィール画像を選択して下さい。'),
   })
 
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) })
@@ -83,7 +83,7 @@ const UpdateUserName = () => {
           <Box mb={2}>
             <Controller
               control={control}
-              name='image'
+              name='picture'
               defaultValue=''
               render={({ field }) => (
                 <input
@@ -111,4 +111,4 @@ const UpdateUserName = () => {
   }
 }
 
-export default UpdateUserName
+export default UpdateUserPicture

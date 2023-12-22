@@ -21,7 +21,14 @@ const Profile = () => {
         <div>
           <h2 className='mb-16 text-4xl'>プロフィール</h2>
           <div className='mb-10'>
-            <h2 className='mb-3 text-2xl'>プロフィール画像</h2>
+            <h2 className='mb-2 text-2xl'>
+              プロフィール画像
+              <span className='ml-8'>
+                <Link className='text-xl' href={'/profile/updateUserPicture'}>
+                  <Button variant='outlined'>変更</Button>
+                </Link>
+              </span>
+            </h2>
             <Image
               src={user.picture}
               alt='user-pic'
