@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import UpdateUserEmail from './updateUserEmail'
+import UpdateUserName from './updateUserName'
 import api from '../../components/api'
 
 jest.mock('@auth0/auth0-react', () => ({
@@ -15,20 +15,20 @@ jest.mock('@auth0/auth0-react', () => ({
 
 jest.spyOn(api, 'patch')
 
-describe('UpdateUserEmail', () => {
+describe('UpdateUserName', () => {
   test('renders the form and submits the data', async () => {
-    render(<UpdateUserEmail />)
+    render(<UpdateUserName />)
 
-    const emailInput = screen.getByLabelText('新しいメールアドレス')
+    const nameInput = screen.getByLabelText('新しいユーザーネーム')
     const submitButton = screen.getByText('送信')
 
-    await userEvent.type(emailInput, 'test@example.com')
+    await userEvent.type(nameInput, 'Taro')
     userEvent.click(submitButton)
 
     await waitFor(() => {
       expect(api.patch).toHaveBeenCalledWith(
         '/users/test_user_sub',
-        { email: 'test@example.com' },
+        { nickname: 'Taro' },
         { headers: { Authorization: 'Bearer test_access_token' } },
       )
     })
