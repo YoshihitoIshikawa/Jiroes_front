@@ -7,8 +7,8 @@ import { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 
-import CustomizedLoadingButton from '../../components/customizedLoadingButton'
 import api from '../../components/api'
+import CustomizedLoadingButton from '../../components/customizedLoadingButton'
 
 const UpdateUserPicture = () => {
   const schema = yup.object({
@@ -41,7 +41,7 @@ const UpdateUserPicture = () => {
       }
     }
     getToken()
-  }, [])
+  }, [getAccessTokenSilently])
 
   async function onSubmit() {
     try {
