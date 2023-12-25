@@ -33,8 +33,8 @@ const Profile = () => {
               src={user.picture}
               alt='user-pic'
               className='rounded-lg'
-              width={100}
-              height={100}
+              width={200}
+              height={200}
             />
           </div>
           <div className='mb-10'>
