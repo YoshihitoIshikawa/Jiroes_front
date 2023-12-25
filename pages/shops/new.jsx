@@ -200,7 +200,6 @@ export default function NewShop() {
               rows={4}
             />
           </Box>
-          <p className='mb-2 text-red-600'>{errors.user_id?.message}</p>
           <CustomizedLoadingButton loading={loading} />
         </form>
       </div>
