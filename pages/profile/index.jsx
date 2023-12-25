@@ -14,7 +14,7 @@ const Profile = () => {
       </div>
     )
   }
-  console.log(user.picture)
+
   if (isAuthenticated) {
     return (
       <div className='flex flex-col sm:w-1/2'>

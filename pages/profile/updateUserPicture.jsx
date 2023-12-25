@@ -58,9 +58,7 @@ const UpdateUserPicture = () => {
         },
       }
       await api.patch(`/users/${user.sub}`, formData, headers)
-      router.push('/profile').then(() => {
-        window.location.reload(true)
-      })
+      router.push('/')
     } catch (err) {
       alert('変更に失敗しました。')
       setLoading(false)
