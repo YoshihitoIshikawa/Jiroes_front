@@ -19,6 +19,7 @@ const formData = {
   prohibited_matters: '',
   remarks: '',
   when_to_buy_tickets: '',
+  sub: '',
 }
 
 jest.mock('@auth0/auth0-react')

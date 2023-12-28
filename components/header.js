@@ -120,6 +120,9 @@ export default function PrimarySearchAppBar() {
         <Link href={'/likedReviews'}>いいね済レビュー</Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
+        <Link href={'/registeredShops'}>登録済店舗</Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
         <Link href={'/shops'}>店舗一覧</Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
@@ -156,6 +159,9 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link href={'/likedReviews'}>いいね済レビュー</Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link href={'/registeredShops'}>登録済店舗</Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link href={'/shops'}>店舗一覧</Link>

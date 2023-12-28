@@ -15,7 +15,7 @@ export default function NewShop() {
     name: yup.string().required('店舗名は入力必須項目です。'),
   })
 
-  const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0()
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0()
   const {
     register,
     handleSubmit,
@@ -200,6 +200,7 @@ export default function NewShop() {
               rows={4}
             />
           </Box>
+          <input type='hidden' {...register('sub')} value={user.sub} />
           <CustomizedLoadingButton loading={loading} />
         </form>
       </div>
