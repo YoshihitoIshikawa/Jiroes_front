@@ -60,7 +60,7 @@ export async function getServerSideProps({ params }) {
 export default function ShopPage({ shop, reviews }) {
   const [value, setValue] = React.useState(0)
 
-  const { isAuthenticated } = useAuth0()
+  const { user, isAuthenticated } = useAuth0()
 
   const [open, setOpen] = useState(false)
 
@@ -249,7 +249,7 @@ export default function ShopPage({ shop, reviews }) {
                     </tr>
                   </tbody>
                 </table>
-                {isAuthenticated ? (
+                {isAuthenticated && user.sub == shop.sub ? (
                   <Link href={`/shops/${shopId}/edit`}>
                     <Button variant='outlined'>
                       <CreateIcon />
