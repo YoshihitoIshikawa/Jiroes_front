@@ -35,6 +35,7 @@ const Profile = () => {
               className='rounded-lg'
               width={200}
               height={200}
+              unoptimized
             />
           </div>
           <div className='mb-10'>
