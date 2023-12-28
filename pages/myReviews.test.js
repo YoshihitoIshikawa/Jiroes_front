@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { render, waitFor } from '@testing-library/react'
+import { screen, render, waitFor } from '@testing-library/react'
 
 import MyReviews from './myReviews'
 import api from '../components/api'
@@ -15,6 +15,9 @@ describe('MyReviews Component', () => {
       image: {
         url: 'https://example.com/review1_thumb.jpg',
       },
+      shop: {
+        name: 'Shop 1',
+      },
     },
     {
       id: 2,
@@ -23,14 +26,17 @@ describe('MyReviews Component', () => {
       image: {
         url: 'https://example.com/review2_thumb.jpg',
       },
+      shop: {
+        name: 'Shop 2',
+      },
     },
   ]
 
-  test('fetches posted reviews data.', async () => {
+  test('calls backend API to fetch data and renders that data.', async () => {
     useAuth0.mockReturnValue({
       isAuthenticated: true,
       getAccessTokenSilently: jest.fn().mockResolvedValue('dummyToken'),
-      isLoading: jest.fn(),
+      isLoading: false,
     })
     await jest.spyOn(api, 'get').mockResolvedValue({ data: postedReviews })
 
@@ -40,6 +46,12 @@ describe('MyReviews Component', () => {
 
     await waitFor(() => {
       expect(api.get).toHaveBeenCalledWith('/my_reviews/index', expect.any(Object))
+    })
+
+    await waitFor(() => {
+      postedReviews.forEach((review) => {
+        expect(screen.getByText(review.title)).toBeInTheDocument()
+      })
     })
   })
 })

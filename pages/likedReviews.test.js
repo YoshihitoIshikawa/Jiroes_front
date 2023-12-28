@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { render, waitFor } from '@testing-library/react'
+import { screen, render, waitFor } from '@testing-library/react'
 
 import LikedReviews from './likedReviews'
 import api from '../components/api'
@@ -26,11 +26,11 @@ describe('LikedReviews Component', () => {
     },
   ]
 
-  test('fetches liked reviews data.', async () => {
+  test('calls backend API to fetch data and renders that data.', async () => {
     useAuth0.mockReturnValue({
       isAuthenticated: true,
       getAccessTokenSilently: jest.fn().mockResolvedValue('dummyToken'),
-      isLoading: jest.fn(),
+      isLoading: false,
     })
     await jest.spyOn(api, 'get').mockResolvedValue({ data: likedReviews })
 
@@ -40,6 +40,12 @@ describe('LikedReviews Component', () => {
 
     await waitFor(() => {
       expect(api.get).toHaveBeenCalledWith('/liked_reviews/index', expect.any(Object))
+    })
+
+    await waitFor(() => {
+      likedReviews.forEach((review) => {
+        expect(screen.getByText(review.title)).toBeInTheDocument()
+      })
     })
   })
 })
