@@ -61,9 +61,9 @@ const RegisteredShops = () => {
     return (
       <div>
         <h2 className='mb-8 text-4xl'>登録済店舗</h2>
-        {RegisteredShops.length != 0 ? (
+        {registeredShops.length != 0 ? (
           <div className='flex flex-col sm:w-1/2'>
-            {RegisteredShops.map((shop) => (
+            {registeredShops.map((shop) => (
               <Box className='m-4' key={shop.id}>
                 <Link className='text-xl' href={`/shops/${shop.id}`}>
                   {shop.name}
