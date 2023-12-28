@@ -1,11 +1,13 @@
 import RamenDiningIcon from '@mui/icons-material/RamenDining'
+import SearchIcon from '@mui/icons-material/Search'
+import Link from 'next/link'
 
 export default function Home() {
   return (
     <div className='flex w-3/4 flex-col'>
       <section className='mb-24'>
         <h2 className='mb-12 text-6xl font-black'>JIROES</h2>
-        <p className='text-xl'>
+        <p className='mb-6 text-xl'>
           JIROESとは、二郎系ラーメンに特化した口コミアプリです。
           <br />
           このアプリは
@@ -33,6 +35,10 @@ export default function Home() {
           <br />
           勿論、ジロリアンの方々も情報収集に役立ててくださいね！
         </p>
+        <Link className='text-3xl font-bold text-orange-500' href={'/shops'}>
+          <SearchIcon className='mr-2 text-slate-900' />
+          店舗一覧はこちらをクリック！
+        </Link>
       </section>
       <section className='mb-24'>
         <h2 className='mb-12 text-6xl font-black'>How to use</h2>
@@ -42,7 +48,7 @@ export default function Home() {
         </p>
         <p className='mb-4 text-xl'>
           <RamenDiningIcon className='mr-2' />
-          ログインをすればレビュー投稿・新規店舗登録が出来ます！
+          ログインをすればレビュー投稿・いいね・新規店舗登録等が可能に！
         </p>
         <p className='text-xl'>
           <RamenDiningIcon className='mr-2' />
