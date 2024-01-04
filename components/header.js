@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import AccountCircle from '@mui/icons-material/AccountCircle'
+import Avatar from '@mui/material/Avatar'
+import PersonIcon from '@mui/icons-material/Person'
 import RamenDiningIcon from '@mui/icons-material/RamenDining'
 import SearchIcon from '@mui/icons-material/Search'
 import AppBar from '@mui/material/AppBar'
@@ -56,7 +57,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 export default function PrimarySearchAppBar() {
-  const { loginWithRedirect, isAuthenticated, logout } = useAuth0()
+  const { user, loginWithRedirect, isAuthenticated, logout } = useAuth0()
 
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -211,7 +212,9 @@ export default function PrimarySearchAppBar() {
                     onClick={handleProfileMenuOpen}
                     color='inherit'
                   >
-                    <AccountCircle />
+                    <Avatar src={user.picture} alt='User Avatar'>
+                      <PersonIcon />
+                    </Avatar>
                   </IconButton>
                 </Box>
                 <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -223,7 +226,9 @@ export default function PrimarySearchAppBar() {
                     onClick={handleMobileMenuOpen}
                     color='inherit'
                   >
-                    <AccountCircle />
+                    <Avatar src={user.picture} alt='User Avatar'>
+                      <PersonIcon />
+                    </Avatar>
                   </IconButton>
                 </Box>
               </>
