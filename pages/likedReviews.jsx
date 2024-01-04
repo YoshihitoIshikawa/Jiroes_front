@@ -89,6 +89,7 @@ const LikedReviews = () => {
                   <p className='mt-4 text-lg'>
                     投稿日：{moment(review.created_at).format('YYYY-MM-DD')}
                   </p>
+                  <p className='mt-2 text-lg'>店舗名：{review.shop.name}</p>
                 </div>
               </Box>
             ))}

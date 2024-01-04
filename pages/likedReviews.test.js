@@ -15,6 +15,9 @@ describe('LikedReviews Component', () => {
       image: {
         url: 'https://example.com/review1_thumb.jpg',
       },
+      shop: {
+        name: 'Shop 1',
+      },
     },
     {
       id: 2,
@@ -22,6 +25,9 @@ describe('LikedReviews Component', () => {
       score: 4,
       image: {
         url: 'https://example.com/review2_thumb.jpg',
+      },
+      shop: {
+        name: 'Shop 2',
       },
     },
   ]

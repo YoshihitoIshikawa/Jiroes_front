@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import CreateIcon from '@mui/icons-material/Create'
 import DeleteIcon from '@mui/icons-material/Delete'
 import FavoriteIcon from '@mui/icons-material/Favorite'
@@ -243,6 +244,12 @@ export default function ReviewPage({ review }) {
                   <div></div>
                 )}
               </div>
+              <div className='mt-8'>
+                <Link className='text-2xl' href={`/shops/${shopId}`}>
+                  <ArrowBackIosIcon />
+                  店舗ページへ
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -286,6 +293,12 @@ export default function ReviewPage({ review }) {
                   <FavoriteBorderIcon /> {numberOfLikes}
                 </Button>
               </ThemeProvider>
+              <div className='mt-8'>
+                <Link className='text-2xl' href={`/shops/${shopId}`}>
+                  <ArrowBackIosIcon />
+                  店舗ページへ
+                </Link>
+              </div>
             </div>
           </div>
         </div>
