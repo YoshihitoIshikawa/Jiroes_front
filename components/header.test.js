@@ -88,7 +88,7 @@ describe('when authorized', () => {
 
   test('should render an account icon when authorized', async () => {
     await waitFor(() => {
-      const accountIcons = screen.getAllByTestId('AccountCircleIcon')
+      const accountIcons = screen.getAllByRole('button')
       accountIcons.map((accountIcon) => {
         expect(accountIcon).toBeInTheDocument()
       })
@@ -96,7 +96,7 @@ describe('when authorized', () => {
   })
 
   test('should render an account menu when you click the account icon', () => {
-    const accountIcons = screen.getAllByTestId('AccountCircleIcon')
+    const accountIcons = screen.getAllByRole('button')
     userEvent.click(accountIcons[0])
 
     const myPageLinks = screen.getAllByText('マイページ')
