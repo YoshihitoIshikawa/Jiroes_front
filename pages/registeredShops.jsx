@@ -62,7 +62,7 @@ const RegisteredShops = () => {
       <div>
         <h2 className='mb-8 text-4xl'>登録済店舗</h2>
         {registeredShops.length != 0 ? (
-          <div className='flex flex-col sm:w-1/2'>
+          <div className='flex flex-col'>
             {registeredShops.map((shop) => (
               <Box className='m-4' key={shop.id}>
                 <Link className='text-xl' href={`/shops/${shop.id}`}>
@@ -81,7 +81,7 @@ const RegisteredShops = () => {
     )
   } else {
     return (
-      <div className='flex flex-col sm:w-1/2'>
+      <div className='flex flex-col'>
         <div className='mb-8 text-2xl'>
           ご自身で登録済の店舗を表示するにはログインが必要です。
         </div>
