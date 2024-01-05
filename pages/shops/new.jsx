@@ -53,6 +53,7 @@ export default function NewShop() {
       await api.post('/shops', data, headers)
       router.push('/')
     } catch (err) {
+      setLoading(false)
       alert('登録に失敗しました。')
     }
   }

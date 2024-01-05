@@ -66,6 +66,7 @@ export default function NewReview() {
       await api.post(`/shops/${shopId}/reviews`, formData, headers)
       router.push('/')
     } catch (err) {
+      setLoading(false)
       alert('登録に失敗しました。')
     }
   }
