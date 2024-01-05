@@ -64,6 +64,7 @@ export default function EditShop({ shop }) {
       await api.patch(`/shops/${shopId}`, data, headers)
       router.push('/')
     } catch (err) {
+      setLoading(false)
       alert('登録に失敗しました。')
     }
   }

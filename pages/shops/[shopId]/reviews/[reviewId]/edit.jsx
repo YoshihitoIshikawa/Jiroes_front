@@ -74,8 +74,8 @@ export default function EditReview({ review }) {
       await api.patch(`/shops/${shopId}/reviews/${reviewId}`, formData, headers)
       router.push('/')
     } catch (err) {
+      setLoading(false)
       alert('登録に失敗しました。')
-      console.log(data)
     }
   }
 
