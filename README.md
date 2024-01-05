@@ -6,7 +6,7 @@ JIROESは、**二郎系ラーメン専用**の口コミ情報サイトです。<
 <br>
 <br>
 
-![FireShot Capture 011 -  - jiroes-front vercel app](https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/76a4af8f-79cc-49b2-8899-99f6f58961ed)
+![FireShot Capture 029 -  - jiroes-front vercel app](https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/9f783dc3-7fc2-42be-b942-f1e61c6d8c19)
 
 ## 機能紹介
 1. ユーザーログイン機能
@@ -15,6 +15,10 @@ JIROESは、**二郎系ラーメン専用**の口コミ情報サイトです。<
 4. 店舗登録機能
 5. Google Map API機能
 6. レビューいいね機能
+7. いいね済レビュー閲覧機能
+8. 投稿済レビュー閲覧機能
+9. 登録済店舗閲覧機能
+10. ユーザー情報編集機能
 <br>
 
 1. ユーザーログイン機能<br>
@@ -29,20 +33,20 @@ password: 123456Aa<br>
 <br>
 
 3. 店舗検索機能<br>
-店舗名や所在地を検索ワードとして部分一致検索が出来ます。<br>
-<img width="700" alt="検索結果画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/cd994671-34c8-4b21-ae67-8f8f75f51efd">
+店舗名や所在地、駅名を検索ワードとして部分一致検索が出来ます。<br>
+<img width="700" alt="検索結果画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/47db37a3-6023-43e1-a6c0-51dd4b421961">
 <br>
 <br>
 
 4. レビュー投稿機能<br>
 画像ファイルを添付してレビュー投稿が出来ます。<br>
-<img width="700" alt="レビュー投稿画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/8b3eb9c9-ccc2-41ab-a873-88929332898c">
+<img width="700" alt="レビュー投稿画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/f8b54117-2d5d-497b-a5d3-2786839e83df">
 <br>
 <br>
 
 投稿したレビューは店舗詳細ページでその店舗のレビューが一覧で表示されます。
 <br>
-<img width="700" alt="レビュー一覧画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/245ca7ff-4c04-4246-ab46-9414cad201a2">
+<img width="700" alt="レビュー一覧画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/94adfc34-0e5b-4be1-b3ea-bf53db1aba93">
 <br>
 <br>
 
@@ -54,27 +58,52 @@ password: 123456Aa<br>
 
 4. 店舗登録機能<br>
 店舗情報を入力して新規店舗を登録出来ます。<br>
-<img width="700" alt="店舗登録画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/d46b6083-e0f8-4bd6-b232-c19d5b14f8d8">
+<img width="700" alt="店舗登録画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/d175ed23-e679-45dd-8f77-f9d0415242de">
 <br>
 <br>
 
-登録した情報は店舗詳細ページの店舗情報タブで閲覧・編集出来ます。
+登録した情報は店舗詳細ページの店舗情報タブで閲覧でき、登録したユーザーのみ編集が出来ます。
 <br>
-<img width="700" alt="店舗情報画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/dea8346a-3d72-45fb-a9fd-55738b7813eb">
+<img width="700" alt="店舗情報画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/daf686bc-b8b4-415e-b3c2-7a576565c571">
 <br>
 <br>
 
 5. Google Map API機能<br>
 店舗詳細ページのマップボタンからgoogle map apiを呼び出す事が出来ます。<br>
-<img width="700" alt="店舗登録画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/f82069cf-72ed-41c7-b8ea-4bfaf4c145f3">
+<img width="700" alt="店舗登録画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/b0457522-e57d-48ae-aad4-690dcd4f93e7">
 <br>
 <br>
 
 6. レビューいいね機能<br>
-ログインユーザーはレビューをいいねする事が出来ます。<br>
+レビューをいいねする事が出来ます。<br>
 <img width="700" alt="店舗登録画面" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/6276af3f-c9be-4eea-94ad-d6c61bb30e9f">
 <br>
 <br>
+
+7. いいね済レビュー閲覧機能<br>
+いいねしたレビューの一覧を閲覧する事が出来ます。<br>
+<img width="700" alt="いいね済レビュー一覧" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/3febfa03-59bf-446d-b9b1-cc9f32759fd6">
+<br>
+<br>
+
+8. 投稿済レビュー閲覧機能<br>
+投稿したレビューの一覧を閲覧する事が出来ます。<br>
+<img width="700" alt="投稿済レビュー一覧" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/6f2598b1-7566-499c-adf8-4883558a7dbc">
+<br>
+<br>
+
+9. 登録済店舗閲覧機能<br>
+自身で登録した店舗の一覧を閲覧する事が出来ます。<br>
+<img width="700" alt="登録済店舗一覧" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/ea96d05e-59d8-4480-956e-efb49cbd1489">
+<br>
+<br>
+
+10. ユーザー情報編集機能<br>
+編集ボタンから自身のプロフィール情報を編集する事が出来ます。<br>
+<img width="700" alt="プロフィール情報変更" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/60d193f2-c252-43bc-995d-65b5d6039600">
+<br>
+<br>
+
 
 ## 使用技術
 - バックエンド
