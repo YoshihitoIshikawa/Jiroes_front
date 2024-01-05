@@ -139,6 +139,6 @@ password: 123456Aa<br>
 [Jiroes_api](https://github.com/YoshihitoIshikawa/Jiroes_api)
 
 ## ER図
-<img width="600" alt="ER図" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/9a805041-4d7f-4ee9-aeee-c942afce2e3a">
+<img width="600" alt="ER図" src="https://github.com/YoshihitoIshikawa/Jiroes_front/assets/124547294/ae7ba778-0727-49d9-b17b-de4e84eecdf5">
 
 
