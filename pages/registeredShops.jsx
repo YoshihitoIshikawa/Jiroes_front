@@ -7,7 +7,7 @@ import api from '../components/api'
 
 const RegisteredShops = () => {
   const [token, setToken] = useState('')
-  const [registeredShops, setRegisteredShops] = useState([])
+  const [registeredShops, setRegisteredShops] = useState(null)
 
   const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
@@ -22,7 +22,7 @@ const RegisteredShops = () => {
       return response.data
     } catch (error) {
       console.error('Error fetching registered shops:', error)
-      return []
+      return null
     }
   }
 
@@ -58,27 +58,35 @@ const RegisteredShops = () => {
   }
 
   if (isAuthenticated) {
-    return (
-      <div>
-        <h2 className='mb-8 text-4xl'>登録済店舗</h2>
-        {registeredShops.length != 0 ? (
-          <div className='flex flex-col'>
-            {registeredShops.map((shop) => (
-              <Box className='m-4' key={shop.id}>
-                <Link className='text-xl' href={`/shops/${shop.id}`}>
-                  {shop.name}
-                </Link>
-                <p>{shop.access}</p>
-              </Box>
-            ))}
-          </div>
-        ) : (
-          <div className='flex flex-col'>
-            <p className='mb-8 text-2xl'>ご自身で登録済の店舗がありません。</p>
-          </div>
-        )}
-      </div>
-    )
+    if (registeredShops != null) {
+      return (
+        <div>
+          <h2 className='mb-8 text-4xl'>登録済店舗</h2>
+          {registeredShops.length != 0 ? (
+            <div className='flex flex-col'>
+              {registeredShops.map((shop) => (
+                <Box className='m-4' key={shop.id}>
+                  <Link className='text-xl' href={`/shops/${shop.id}`}>
+                    {shop.name}
+                  </Link>
+                  <p>{shop.access}</p>
+                </Box>
+              ))}
+            </div>
+          ) : (
+            <div className='flex flex-col'>
+              <p className='mb-8 text-2xl'>ご自身で登録済の店舗がありません。</p>
+            </div>
+          )}
+        </div>
+      )
+    } else {
+      return (
+        <div className='flex flex-col sm:w-1/2'>
+          <h2 className='text-4xl'>Loading...</h2>
+        </div>
+      )
+    }
   } else {
     return (
       <div className='flex flex-col'>
