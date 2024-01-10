@@ -76,7 +76,6 @@ const MyReviews = () => {
                       width={200}
                       height={150}
                       priority
-                      unoptimized
                     />
                   </div>
                   <div>
