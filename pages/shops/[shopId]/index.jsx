@@ -79,7 +79,9 @@ export default function ShopPage() {
       const shop = resShop.data
       const resReviews = await api.get(`/shops/${shopId}/reviews`)
       const reviews = resReviews.data
-      return { shop, reviews }
+      setShop(shop)
+      setReviews(reviews)
+      setLoading(false)
     } catch (error) {
       console.error('Error fetching shops:', error)
       return null
@@ -87,14 +89,10 @@ export default function ShopPage() {
   }
 
   useEffect(() => {
-    const getData = async () => {
-      const { shop, reviews } = await fetchData()
-      setShop(shop)
-      setReviews(reviews)
-      setLoading(false)
+    if (shopId) {
+      fetchData()
     }
-    getData()
-  }, [])
+  }, [shopId])
 
   return (
     <div className='flex flex-col sm:w-2/3'>
@@ -104,7 +102,7 @@ export default function ShopPage() {
       {loading ? (
         <div className='flex items-center'>
           <h2 className='text-4xl'>
-            Loading
+            Loading...
             <span className='ml-4'>
               <CircularProgress />
             </span>
