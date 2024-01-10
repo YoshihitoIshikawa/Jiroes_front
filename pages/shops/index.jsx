@@ -8,7 +8,7 @@ export default function IndexShops() {
   const [loading, setLoading] = useState(true)
   const [shops, setShops] = useState(null)
 
-  const fetchRegisteredShops = async () => {
+  const fetchShops = async () => {
     try {
       const response = await api.get('/shops')
       return response.data
@@ -20,7 +20,7 @@ export default function IndexShops() {
 
   useEffect(() => {
     const getShops = async () => {
-      const shopsData = await fetchRegisteredShops()
+      const shopsData = await fetchShops()
       setShops(shopsData)
       setLoading(false)
     }
