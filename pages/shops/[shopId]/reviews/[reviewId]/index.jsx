@@ -174,7 +174,6 @@ export default function ReviewPage({ review }) {
                         width={500}
                         height={500}
                         priority
-                        unoptimized
                       />
                     </td>
                   </tr>
@@ -274,7 +273,6 @@ export default function ReviewPage({ review }) {
                         width={500}
                         height={500}
                         priority
-                        unoptimized
                       />
                     </td>
                   </tr>
