@@ -285,130 +285,13 @@ export default function ReviewPage() {
         )}
       </div>
     )
-
-    return (
-      <div>
-        {loading && (
-          <div className='flex items-center'>
-            <h2 className='text-4xl'>
-              Loading
-              <span className='ml-4'>
-                <CircularProgress />
-              </span>
-            </h2>
-          </div>
-        )}
-        {review && (
-          <div className='flex flex-col'>
-            <div className='px-6 py-4 text-2xl md:text-4xl'>{review.title}</div>
-            <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
-              <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
-                <div className='mb-20 overflow-hidden'>
-                  <table className='mb-4 min-w-full text-left font-light md:text-lg'>
-                    <tbody>
-                      <tr className='border-b dark:border-neutral-500'>
-                        <th className='whitespace-nowrap px-6 py-4'>画像</th>
-                        <td className='whitespace-pre-wrap px-6 py-4'>
-                          <Image
-                            src={review.image.url}
-                            alt='reviewImage'
-                            className='rounded-lg'
-                            width={500}
-                            height={500}
-                            priority
-                          />
-                        </td>
-                      </tr>
-                      <tr className='border-b dark:border-neutral-500'>
-                        <th className='whitespace-nowrap px-6 py-4'>評価</th>
-                        <td className='whitespace-pre-wrap px-6 py-4'>
-                          {review.score} / 5
-                        </td>
-                      </tr>
-                      <tr className='border-b dark:border-neutral-500'>
-                        <th className='whitespace-nowrap px-6 py-4'>内容</th>
-                        <td className='whitespace-pre-wrap px-6 py-4'>
-                          {review.caption}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div className='flex'>
-                    {liked ? (
-                      <ThemeProvider theme={myTheme}>
-                        <Button
-                          variant='outlined'
-                          data-testid='likeButton'
-                          onClick={handleLikeClick}
-                        >
-                          <FavoriteIcon /> {numberOfLikes}
-                        </Button>
-                      </ThemeProvider>
-                    ) : (
-                      <ThemeProvider theme={myTheme}>
-                        <Button
-                          variant='outlined'
-                          data-testid='likeButton'
-                          onClick={handleLikeClick}
-                        >
-                          <FavoriteBorderIcon /> {numberOfLikes}
-                        </Button>
-                      </ThemeProvider>
-                    )}
-                    {user.sub == review.sub ? (
-                      <div>
-                        <Link
-                          className='mx-4'
-                          href={`/shops/${shopId}/reviews/${reviewId}/edit`}
-                        >
-                          <Button variant='outlined'>
-                            <CreateIcon />
-                            編集
-                          </Button>
-                        </Link>
-                        <Button variant='outlined' onClick={handleDelete}>
-                          <DeleteIcon />
-                          削除
-                        </Button>
-                        <Dialog open={open} onClose={handleClose}>
-                          <DialogTitle>確認</DialogTitle>
-                          <DialogContent>
-                            <DialogContentText>本当に削除しますか？</DialogContentText>
-                          </DialogContent>
-                          <DialogActions>
-                            <Button onClick={handleClose} color='primary'>
-                              キャンセル
-                            </Button>
-                            <Button onClick={confirmDelete} color='primary'>
-                              削除
-                            </Button>
-                          </DialogActions>
-                        </Dialog>
-                      </div>
-                    ) : (
-                      <div></div>
-                    )}
-                  </div>
-                  <div className='mt-8'>
-                    <Link className='text-2xl' href={`/shops/${shopId}`}>
-                      <ArrowBackIosIcon />
-                      店舗ページへ
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    )
   } else {
     return (
       <div>
         {loading ? (
           <div className='flex items-center'>
             <h2 className='text-4xl'>
-              Loading
+              Loading...
               <span className='ml-4'>
                 <CircularProgress />
               </span>
@@ -425,14 +308,16 @@ export default function ReviewPage() {
                       <tr className='border-b dark:border-neutral-500'>
                         <th className='whitespace-nowrap px-6 py-4'>画像</th>
                         <td className='whitespace-pre-wrap px-6 py-4'>
-                          <Image
-                            src={review.image.url}
-                            alt='reviewImage'
-                            className='rounded-lg'
-                            width={500}
-                            height={500}
-                            priority
-                          />
+                          {review.image && (
+                            <Image
+                              src={review.image.url}
+                              alt='reviewImage'
+                              className='rounded-lg'
+                              width={500}
+                              height={500}
+                              priority
+                            />
+                          )}
                         </td>
                       </tr>
                       <tr className='border-b dark:border-neutral-500'>

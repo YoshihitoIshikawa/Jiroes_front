@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useRouter } from 'next/router'
 
@@ -25,6 +25,9 @@ describe('Review Page', () => {
   }
 
   beforeEach(() => {
+    useAuth0.mockReturnValue({
+      isAuthenticated: true,
+    })
     useRouter.mockReturnValue({
       query: {
         shopId: 1,
@@ -44,8 +47,11 @@ describe('Review Page', () => {
       getAccessTokenWithPopup: jest.fn(),
       user: { sub: '1234' },
     })
-
-    component = render(<ReviewPage review={reviewData} />)
+    await waitFor(() => {
+      component = render(<ReviewPage review={reviewData} />, {
+        initialState: { loading: false },
+      })
+    })
 
     expect(screen.getByText('Review 1')).toBeInTheDocument()
     expect(screen.getByText('Test caption')).toBeInTheDocument()
@@ -64,8 +70,6 @@ describe('Review Page', () => {
       getAccessTokenWithPopup: jest.fn(),
       user: { sub: '5678' },
     })
-
-    component = render(<ReviewPage review={reviewData} />)
 
     expect(screen.queryByText('編集')).not.toBeInTheDocument()
     expect(screen.queryByText('削除')).not.toBeInTheDocument()
@@ -93,8 +97,6 @@ describe('Review Page', () => {
       getAccessTokenWithPopup: jest.fn(),
       user: { sub: '90' },
     })
-
-    component = render(<ReviewPage review={reviewData} />)
 
     expect(await api.get).toHaveBeenCalled()
 
