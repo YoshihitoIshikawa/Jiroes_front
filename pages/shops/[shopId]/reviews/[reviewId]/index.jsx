@@ -169,7 +169,7 @@ export default function ReviewPage() {
 
   if (isAuthenticated) {
     return (
-      <div className='flex flex-col'>
+      <div className='flex flex-col sm:w-1/2'>
         {loading ? (
           <div className='flex items-center'>
             <h2 className='text-4xl'>
@@ -287,7 +287,7 @@ export default function ReviewPage() {
     )
   } else {
     return (
-      <div>
+      <div className='flex flex-col sm:w-1/2'>
         {loading ? (
           <div className='flex items-center'>
             <h2 className='text-4xl'>
@@ -298,7 +298,7 @@ export default function ReviewPage() {
             </h2>
           </div>
         ) : (
-          <div className='flex flex-col sm:w-1/2'>
+          <div className='flex flex-col'>
             <div className='px-6 py-4 text-lg md:text-4xl'>{review.title}</div>
             <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
               <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
